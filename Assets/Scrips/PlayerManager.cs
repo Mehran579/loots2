@@ -42,20 +42,24 @@ public class PlayerManager : MonoBehaviour
         if (moveInput != Vector2.zero) lastdir = moveInput.normalized;
     }
 
-    public void OnDash(InputAction.CallbackContext ctx)
+    public void OnDash(InputAction.CallbackContext ctx) => TryDash(ctx, false);        // Shift
+    public void OnDashToMouse(InputAction.CallbackContext ctx) => TryDash(ctx, true);  // Ctrl
+
+    void TryDash(InputAction.CallbackContext ctx, bool toMouse)
     {
         if (!ctx.performed || IsDashing || Time.time < nextDashTime) return;
-        StartCoroutine(DashRoutine());
+        StartCoroutine(DashRoutine(toMouse));
     }
 
-    IEnumerator DashRoutine()
+    IEnumerator DashRoutine(bool toMouse)
     {
         PlayerAttack.CancelAttack();
         nextDashTime = Time.time + dashCooldown;
 
-        dashDir = moveInput != Vector2.zero
-            ? moveInput.normalized
-            : Aim.DirFrom(rb.position, lastdir);
+        if (toMouse)
+            dashDir = Aim.DirFrom(rb.position, lastdir);        // always toward the mouse
+        else
+            dashDir = moveInput != Vector2.zero ? moveInput.normalized : lastdir;
 
         Vector2 start = rb.position;
 

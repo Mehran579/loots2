@@ -65,26 +65,38 @@ public class PlayerAttack : MonoBehaviour
     public void AddDashMark(Vector2 start, Vector2 end)
     {
         if ((end - start).sqrMagnitude < 0.25f) return;   // ignore tiny dashes
-        Mark m = SpawnMark(new[] { start, end });
+        Mark m = SpawnMark(new[] { start, end }, dashMaterial);
         TryFormLoop(m);
     }
 
     // ================= MARKS =================
     // slash: snapshot the arc points
+
+    public float arcDistance = 5f;     // how far from the player the arc sits
+    public float arcChord = 2.6f;      // straight-line width between the arc's two ends
+    public int arcPointCount = 4;
     public Mark SpawnMark()
     {
-        var pts = new Vector2[slashPoints.Length];
+        Vector2 origin = transform.position;
+        float baseAngle = Mathf.Atan2(attackPivot.right.y, attackPivot.right.x);   // toward the mouse
+        float span = 2f * Mathf.Asin(Mathf.Clamp01(arcChord / (2f * arcDistance)));
+
+        var pts = new Vector2[arcPointCount];
         for (int i = 0; i < pts.Length; i++)
-            pts[i] = slashPoints[i].position;
+        {
+            float a = baseAngle + Mathf.Lerp(-span / 2f, span / 2f, i / (float)(pts.Length - 1));
+            pts[i] = origin + new Vector2(Mathf.Cos(a), Mathf.Sin(a)) * arcDistance;
+        }
         return SpawnMark(pts);
     }
+    public Material dashMaterial;
 
     // any list of world points becomes a mark
-    public Mark SpawnMark(Vector2[] pts)
+    public Mark SpawnMark(Vector2[] pts, Material mat = null)
     {
         var go = new GameObject("SlashMark");     // no parent, stays in the world
         var lr = go.AddComponent<LineRenderer>();
-        lr.material = lineMaterial;
+        lr.material = mat ? mat : lineMaterial;
         lr.useWorldSpace = true;
         lr.positionCount = pts.Length;
         for (int i = 0; i < pts.Length; i++)
@@ -248,23 +260,35 @@ public class PlayerAttack : MonoBehaviour
     }
 
     // ================= WHAT HAPPENS WHEN A LOOP FORMS =================
-    public LayerMask enemyLayers;     // set to your Enemy layer
-    public int loopDamage = 3;
+    public LayerMask enemyLayers;         // set to your Enemy layer
+    public float loopDamageTime = 2f;     // how long the loop stays active
+    public float loopTickRate = 0.3f;     // seconds between damage ticks
+    public int loopTickDamage = 1;        // damage per tick
 
     void OnLoopFormed(List<Vector2> poly)
     {
         StartCoroutine(ShowLoop(poly));
+        StartCoroutine(DamageLoop(poly));
+    }
 
+    IEnumerator DamageLoop(List<Vector2> poly)
+    {
         Vector2 min = poly[0], max = poly[0];
         foreach (var p in poly) { min = Vector2.Min(min, p); max = Vector2.Max(max, p); }
         min -= Vector2.one * 0.5f;
         max += Vector2.one * 0.5f;
 
-        foreach (var col in Physics2D.OverlapAreaAll(min, max, enemyLayers))
+        float end = Time.time + loopDamageTime;
+
+        while (Time.time < end)
         {
-            if (!TouchesPoly(col, poly)) continue;
-            var e = col.GetComponentInParent<EnemyManager>();
-            if (e) e.TakeDamage(loopDamage);
+            foreach (var col in Physics2D.OverlapAreaAll(min, max, enemyLayers))
+            {
+                if (!TouchesPoly(col, poly)) continue;
+                var e = col.GetComponentInParent<EnemyManager>();
+                if (e) e.TakeDamage(loopTickDamage);
+            }
+            yield return new WaitForSeconds(loopTickRate);
         }
     }
 
@@ -287,12 +311,12 @@ public class PlayerAttack : MonoBehaviour
     }
     public float loopShowTime = 5f;       // how long the yellow outline stays (seconds)
     public bool fadeLoop = true;          // false = stays fully bright until it disappears
-
+    public Material loopmateria;
     IEnumerator ShowLoop(List<Vector2> poly)
     {
         var go = new GameObject("LoopFlash");
         var lr = go.AddComponent<LineRenderer>();
-        lr.material = lineMaterial;
+        lr.material = loopmateria;
         lr.useWorldSpace = true;
         lr.loop = true;
         lr.positionCount = poly.Count;
