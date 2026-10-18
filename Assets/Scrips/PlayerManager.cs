@@ -1,32 +1,85 @@
+using System.Collections;
 using UnityEngine;
 using UnityEngine.InputSystem;
-
 
 [RequireComponent(typeof(Rigidbody2D))]
 public class PlayerManager : MonoBehaviour
 {
+    public static bool IsDashing { get; private set; }   // PlayerAttack reads this
+
     public float speed;
-    Vector2 moveInput;
-    Vector2 lastdir;
-    Rigidbody2D rb;
+    [Range(0f, 1f)] public float attackMoveMultiplier = 0.3f;
 
     [Header("dash setting")]
     public float dashSheepd;
     public float dahsDuearion;
     public float invulTIme;
     public float dashCooldown;
+    public LayerMask dashPassLayers;      // layers you can dash through (leave empty if none)
+
+    Vector2 moveInput;
+    Vector2 lastdir = Vector2.down;
+    Vector2 dashDir;
+    float nextDashTime;
+    Rigidbody2D rb;
+    playerhealth health;
+
+    void Awake()
+    {
+        rb = GetComponent<Rigidbody2D>();
+        health = GetComponent<playerhealth>();
+    }
+
+    void OnDisable()
+    {
+        IsDashing = false;
+        rb.excludeLayers = 0;
+    }
 
     public void OnMove(InputAction.CallbackContext context)
     {
         moveInput = context.ReadValue<Vector2>();
-        if(moveInput != Vector2.zero) lastdir = moveInput.normalized;
+        if (moveInput != Vector2.zero) lastdir = moveInput.normalized;
     }
-    private void Awake()
+
+    public void OnDash(InputAction.CallbackContext ctx)
     {
-        rb = GetComponent<Rigidbody2D>();
+        if (!ctx.performed || IsDashing || Time.time < nextDashTime) return;
+        StartCoroutine(DashRoutine());
     }
-    private void FixedUpdate()
+
+    IEnumerator DashRoutine()
     {
-        rb.linearVelocity = moveInput * speed;
+        PlayerAttack.CancelAttack();
+        nextDashTime = Time.time + dashCooldown;
+
+        dashDir = moveInput != Vector2.zero
+            ? moveInput.normalized
+            : Aim.DirFrom(rb.position, lastdir);
+
+        Vector2 start = rb.position;
+
+        IsDashing = true;
+        if (health) health.GrantInvuln(invulTIme);
+        rb.excludeLayers = dashPassLayers;
+
+        yield return new WaitForSeconds(dahsDuearion);
+
+        IsDashing = false;
+        rb.excludeLayers = 0;
+
+        if (PlayerAttack.Instance)
+            PlayerAttack.Instance.AddDashMark(start, rb.position);
+    }
+
+    // the ONLY place that writes velocity
+    void FixedUpdate()
+    {
+        if (IsDashing)
+            rb.linearVelocity = dashDir * dashSheepd;
+        else if (PlayerAttack.IsAttacking)
+            rb.linearVelocity = moveInput * speed * attackMoveMultiplier;
+        else
+            rb.linearVelocity = moveInput * speed;
     }
 }
