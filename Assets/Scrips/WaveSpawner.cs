@@ -1,27 +1,12 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
-using static UnityEngine.GraphicsBuffer;
-
-[System.Serializable]
-public class EnemyGroup
-{
-    public EnemyManager enemyPrefab;
-    public int count = 5;
-    public float spawnInterval = 0.5f;   // seconds between each enemy in this group
-}
-
-[CreateAssetMenu(menuName = "Waves/Wave")]
-public class WaveData : ScriptableObject
-{
-    public EnemyGroup[] groups;          // spawned one group after another
-}
 
 public class WaveSpawner : MonoBehaviour
 {
     public WaveData[] waves;
     public Transform player;
-    public Transform[] targets;   
+    public Transform[] targets;          // the 4 animated points under the player
     public float minSpawnDistance = 8f;
     public float maxSpawnDistance = 12f;
     public float timeBetweenWaves = 3f;
