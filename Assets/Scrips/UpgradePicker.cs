@@ -15,6 +15,17 @@ public class UpgradePicker : MonoBehaviour
     public PlayerManager mover;
     public playerhealth health;
 
+    [Header("Debuff Values")]
+    public float slashDebuff = -1.5f;
+    public float dashDebuff = -1f;
+    public float arcDebuff = -1.5f;
+    public float loopDamageDebuff = -0.5f;
+    public float loopDurationDebuff = -1f;
+    public float loopTickRateMult = 1.4f; // Inverse of 0.7
+    public float attackCooldownMult = 1.33f; // Inverse of 0.75
+    public float dashCooldownMult = 1.43f; // Inverse of 0.7
+    public float speedMult = 0.87f; // Inverse of 1.15
+
     class Upgrade { public string name; public System.Action apply; }
     public static bool IsOpen;           // read by CameraShake.HitStop
     List<Upgrade> pool;
@@ -28,15 +39,15 @@ public class UpgradePicker : MonoBehaviour
 
         pool = new List<Upgrade>
         {
-            new Upgrade { name = "LONG TRAILS\n+1.5s slash, +1s dash", apply = () => { attack.slashLifetime += 1.5f; attack.dashLifetime += 1f; } },
-            new Upgrade { name = "WIDE SLASH\nbigger arc",              apply = () => { attack.arcLength += 1.5f; } },
-            new Upgrade { name = "HOT CIRCUIT\n+0.5 loop damage",       apply = () => { attack.loopTickDamage += 0.5f; } },
-            new Upgrade { name = "LONG CIRCUIT\nloops last +1s",        apply = () => { attack.loopDuration += 1f; } },
-            new Upgrade { name = "RAPID PULSE\nloop ticks faster",      apply = () => { attack.loopTickRate = Mathf.Max(0.08f, attack.loopTickRate * 0.7f); } },
-            new Upgrade { name = "QUICK SLASH\nfaster attack",          apply = () => { attack.attackCooldown = Mathf.Max(0.12f, attack.attackCooldown * 0.75f); } },
-            new Upgrade { name = "FAST DASH\ncooldown -30%",            apply = () => { mover.dashCooldown *= 0.7f; } },
-            new Upgrade { name = "SPEED\n+15% move speed",              apply = () => { mover.speed *= 1.15f; } },
-            new Upgrade { name = "REPAIR\nrestore 50% of lost health",  apply = () => { health.health += (maxHealth - health.health) * 0.5f; } },
+            new Upgrade { name = "SHORT TRAILS\n-1.5s slash, -1s dash", apply = () => { attack.slashLifetime = Mathf.Max(0.5f, attack.slashLifetime + slashDebuff); attack.dashLifetime = Mathf.Max(0.5f, attack.dashLifetime + dashDebuff); } },
+            new Upgrade { name = "NARROW SLASH\nsmaller arc",              apply = () => { attack.arcLength = Mathf.Max(0.5f, attack.arcLength + arcDebuff); } },
+            new Upgrade { name = "COLD CIRCUIT\n-0.5 loop damage",       apply = () => { attack.loopTickDamage = Mathf.Max(0.1f, attack.loopTickDamage + loopDamageDebuff); } },
+            new Upgrade { name = "SHORT CIRCUIT\nloops last -1s",        apply = () => { attack.loopDuration = Mathf.Max(0.5f, attack.loopDuration + loopDurationDebuff); } },
+            new Upgrade { name = "SLOW PULSE\nloop ticks slower",      apply = () => { attack.loopTickRate *= loopTickRateMult; } },
+            new Upgrade { name = "HEAVY SLASH\nslower attack",          apply = () => { attack.attackCooldown *= attackCooldownMult; } },
+            new Upgrade { name = "CLUMSY DASH\ncooldown +43%",            apply = () => { mover.dashCooldown *= dashCooldownMult; } },
+            new Upgrade { name = "SLOWNESS\n-13% move speed",              apply = () => { mover.speed = Mathf.Max(2f, mover.speed * speedMult); } },
+            new Upgrade { name = "INJURY\nlose 50% of current health",  apply = () => { health.health *= 0.5f; } },
         };
     }
 

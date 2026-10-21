@@ -1357,6 +1357,15 @@ MonoBehaviour:
   attack: {fileID: 835543627}
   mover: {fileID: 835543623}
   health: {fileID: 835543630}
+  slashDebuff: -1.5
+  dashDebuff: -1
+  arcDebuff: -1.5
+  loopDamageDebuff: -0.5
+  loopDurationDebuff: -1
+  loopTickRateMult: 1.4
+  attackCooldownMult: 1.33
+  dashCooldownMult: 1.43
+  speedMult: 0.87
 --- !u!4 &483686239
 Transform:
   m_ObjectHideFlags: 0
@@ -1971,7 +1980,7 @@ MonoBehaviour:
   m_Intensity: 1
   m_LightVolumeIntensity: 1
   m_LightVolumeEnabled: 0
-  m_ApplyToSortingLayers: 00000000
+  m_ApplyToSortingLayers: 00000000c9b801b1
   m_LightCookieSprite: {fileID: 0}
   m_DeprecatedPointLightCookieSprite: {fileID: 0}
   m_LightOrder: 0

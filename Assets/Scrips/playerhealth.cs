@@ -6,7 +6,7 @@ public interface IDamageable
 }
 public class playerhealth : MonoBehaviour, IDamageable
 {
-    public float health = 5f;
+    public float health = 15f; // Buffed from 5f
 
     [Header("Invulnerability")]
     public float invulnDuration = 1f;

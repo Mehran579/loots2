@@ -33,7 +33,7 @@ public class PlayerAttack : MonoBehaviour
 
     [Header("Slash Arc")]
     public float arcDistance = 5f;           // how far from the player the arc sits
-    public float arcLength = 3f;             // length measured ALONG the curve
+    public float arcLength = 6f;             // length measured ALONG the curve (Buffed from 3f)
     public int arcPointCount = 4;
 
     [Header("Marks")]
@@ -41,16 +41,16 @@ public class PlayerAttack : MonoBehaviour
     public Material dashMaterial;            // dash lines
     public float lineWidth = 0.12f;
     public Color lineColor = new Color(0.4f, 0.9f, 1f, 1f);
-    public float slashLifetime = 3f;         // how long slash marks last
-    public float dashLifetime = 1.5f;        // how long dash marks last
-    public int maxMarks = 8;
+    public float slashLifetime = 5f;         // how long slash marks last (Buffed from 3f)
+    public float dashLifetime = 3f;        // how long dash marks last (Buffed from 1.5f)
+    public int maxMarks = 12;                // Buffed from 8
     public float endTolerance = 0.4f;        // leniency for near-miss crossings, in world units
 
     [Header("Loop")]
     public LayerMask enemyLayers;
-    public float loopDuration = 2f;          // how long a loop is visible AND deals damage
-    public float loopTickRate = 0.3f;        // seconds between damage ticks
-    public float loopTickDamage = 1f;        // damage per tick
+    public float loopDuration = 4f;          // how long a loop is visible AND deals damage (Buffed from 2f)
+    public float loopTickRate = 0.15f;        // seconds between damage ticks (Buffed from 0.3f)
+    public float loopTickDamage = 2f;        // damage per tick (Buffed from 1f)
     public Material loopmateria;             // outline + fill material (Sprites/Default)
     public Color outlineColor = new Color(1f, 0.9f, 0.3f, 1f);
     public float fillOpacity = 1f;           // 1 = same look as the outline, lower = see-through
