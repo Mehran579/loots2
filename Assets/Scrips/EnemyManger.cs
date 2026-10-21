@@ -212,6 +212,11 @@ public class EnemyManager : MonoBehaviour, IDamageable
             AudioManager.Play(SFX.EnemyDeath);        // SFX
             CameraShake.Shake(0.1f, 0.12f);
             CameraShake.HitStop(0.04f);
+
+            // Notify BackgroundFader if it exists
+            var fader = GameObject.FindFirstObjectByType<BackgroundFader>();
+            if (fader != null) fader.OnEnemyKilled();
+
             SendMessage("OnKilled", SendMessageOptions.DontRequireReceiver);
             Destroy(gameObject);
             return;

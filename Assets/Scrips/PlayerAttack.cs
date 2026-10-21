@@ -32,25 +32,25 @@ public class PlayerAttack : MonoBehaviour
     public float spinTime = 0.15f;
 
     [Header("Slash Arc")]
-    public float arcDistance = 5f;           // how far from the player the arc sits
-    public float arcLength = 6f;             // length measured ALONG the curve (Buffed from 3f)
-    public int arcPointCount = 4;
+    public float arcDistance = 3.14f;           // Base from SS
+    public float arcLength = 8f;             // Buffed from 4.87
+    public int arcPointCount = 100;           // Base from SS
 
     [Header("Marks")]
     public Material lineMaterial;            // slash lines (Sprites/Default)
     public Material dashMaterial;            // dash lines
     public float lineWidth = 0.12f;
     public Color lineColor = new Color(0.4f, 0.9f, 1f, 1f);
-    public float slashLifetime = 5f;         // how long slash marks last (Buffed from 3f)
-    public float dashLifetime = 3f;        // how long dash marks last (Buffed from 1.5f)
-    public int maxMarks = 12;                // Buffed from 8
-    public float endTolerance = 0.4f;        // leniency for near-miss crossings, in world units
+    public float slashLifetime = 6f;         // Buffed from 3
+    public float dashLifetime = 3f;        // Buffed from 1.5
+    public int maxMarks = 15;                // Buffed from 8
+    public float endTolerance = 0.7f;        // Base from SS
 
     [Header("Loop")]
     public LayerMask enemyLayers;
-    public float loopDuration = 4f;          // how long a loop is visible AND deals damage (Buffed from 2f)
-    public float loopTickRate = 0.15f;        // seconds between damage ticks (Buffed from 0.3f)
-    public float loopTickDamage = 2f;        // damage per tick (Buffed from 1f)
+    public float loopDuration = 4f;          // Buffed from 2
+    public float loopTickRate = 0.15f;        // Buffed from 0.3 (Faster)
+    public float loopTickDamage = 2f;        // Buffed from 1
     public Material loopmateria;             // outline + fill material (Sprites/Default)
     public Color outlineColor = new Color(1f, 0.9f, 0.3f, 1f);
     public float fillOpacity = 1f;           // 1 = same look as the outline, lower = see-through

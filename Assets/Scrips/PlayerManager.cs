@@ -7,14 +7,14 @@ public class PlayerManager : MonoBehaviour
 {
     public static bool IsDashing { get; private set; }   // PlayerAttack reads this
 
-    public float speed = 12f; // Buffed from default (was ~10 based on multipliers)
-    [Range(0f, 1f)] public float attackMoveMultiplier = 0.5f; // Buffed from 0.3f
+    public float speed = 11f; // Buffed from 7
+    [Range(0f, 1f)] public float attackMoveMultiplier = 0.5f; // Buffed from 0.3
 
     [Header("dash setting")]
-    public float dashSheepd = 30f; // Buffed
-    public float dahsDuearion = 0.3f; // Buffed from 0.2f
-    public float invulTIme = 0.5f;
-    public float dashCooldown = 0.5f; // Buffed (Lower cooldown)
+    public float dashSheepd = 45f; // Buffed from 35
+    public float dahsDuearion = 0.2f; // Buffed from 0.15
+    public float invulTIme = 0.3f; // Buffed from 0.2
+    public float dashCooldown = 0.4f; // Buffed from 0.7
     public LayerMask dashPassLayers;      // layers you can pass through (dash AND after a hit)
 
     [Header("Dash Juice")]

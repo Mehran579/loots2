@@ -24,6 +24,6 @@ public class IgnoreEnemyCollision : MonoBehaviour
         // Globally tell Unity's 2D Physics engine to ignore collisions between these two layers
         Physics2D.IgnoreLayerCollision(myLayerIndex, enemyLayerIndex, true);
 
-        Debug.Log($"Physics2D: Successfully ignored all collisions between layer '{LayerMask.LayerToName(myLayerIndex)}' and '{targetLayerName}'.");
+        //Debug.Log($"Physics2D: Successfully ignored all collisions between layer '{LayerMask.LayerToName(myLayerIndex)}' and '{targetLayerName}'.");
     }
 }
