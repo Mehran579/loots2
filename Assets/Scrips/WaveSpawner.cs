@@ -14,12 +14,21 @@ public class WaveSpawner : MonoBehaviour
 
     readonly List<EnemyManager> alive = new List<EnemyManager>();
 
+    // Splitter calls this so the wave doesn't end while the small ones live
+    public void Register(EnemyManager e) => alive.Add(e);
+
+    public UpgradePicker picker;         // optional: upgrade screen between waves
+    public int Wave { get; private set; }
+    public int Alive { get { alive.RemoveAll(e => e == null); return alive.Count; } }
+
     IEnumerator Start()
     {
-        foreach (WaveData wave in waves)
+        for (int i = 0; i < waves.Length; i++)
         {
-            yield return StartCoroutine(SpawnWave(wave));
+            Wave = i + 1;
+            yield return StartCoroutine(SpawnWave(waves[i]));
             yield return new WaitUntil(AllDead);
+            if (picker && i < waves.Length - 1) yield return picker.Show();   // not after the last wave
             yield return new WaitForSeconds(timeBetweenWaves);
         }
 
@@ -42,6 +51,9 @@ public class WaveSpawner : MonoBehaviour
                 EnemyManager e = Instantiate(group.enemyPrefab, pos, Quaternion.identity);
                 e.Init(player, targets);
                 alive.Add(e);
+
+                var sp = e.GetComponent<Splitter>();
+                if (sp) sp.spawner = this;
 
                 yield return new WaitForSeconds(group.spawnInterval);
             }

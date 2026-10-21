@@ -28,18 +28,19 @@ public class playerhealth : MonoBehaviour, IDamageable
         //Debug.Log("got hit: " + health);
         if (health <= 0f)
         {
-
-            SceneManager.LoadScene(SceneManager.GetActiveScene().buildIndex);
-            //endscreen.SetActive(true);
+            AudioManager.Play(SFX.PlayerDeath);   // SFX
+            //SceneManager.LoadScene(SceneManager.GetActiveScene().buildIndex);
+            endscreen.SetActive(true);
             //gameObject.SetActive(false);
             return;
         }
 
         invulnUntil = Time.time + invulnDuration;
+        AudioManager.Play(SFX.PlayerHit);         // SFX
+        CameraShake.Shake(0.35f, 0.25f);
+        CameraShake.HitStop(0.08f);
         if (manager) manager.HitReaction(invulnDuration);
         //flash.Blink(invulnDuration, blinkInterval);
-
-        //HitStop.Do(0.05f);
     }
     public GameObject endscreen;
     public void GrantInvuln(float seconds)

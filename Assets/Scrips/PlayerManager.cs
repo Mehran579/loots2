@@ -107,6 +107,7 @@ public class PlayerManager : MonoBehaviour
         Vector2 start = rb.position;
 
         IsDashing = true;
+        AudioManager.Play(SFX.Dash);          // SFX
         if (health) health.GrantInvuln(invulTIme);
 
         if (visual)

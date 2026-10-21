@@ -7,6 +7,7 @@ public class EnemyManager : MonoBehaviour, IDamageable
 {
     public float health = 3f;
     public float moveSpeed = 3f;
+    public bool chase = true;             // untick for Pinner (PinnerBrain moves it instead)
 
     [Header("Targeting")]
     public float offsetRadius = 1.5f;     // bigger = more spread around each point
@@ -31,16 +32,29 @@ public class EnemyManager : MonoBehaviour, IDamageable
     public float landSquash = 0.7f;       // y-scale at the moment of impact
     public float shadowFadeTime = 0.1f;   // shadow fades out on impact, then is removed (0 = instant)
 
+    [Header("Hit Feedback")]
+    public DamagePopup damagePopup;
+
+    [Header("Facing")]
+    public float turnSpeed = 720f;       // degrees per second, 0 = snap instantly
+    public float facingOffset = -90f;    // -90 if the sprite points up, 0 if it points right, 90 if it points left
+
     static readonly List<EnemyManager> all = new List<EnemyManager>();
 
     Rigidbody2D rb;
     Collider2D col;
+    HitEffect hitEffect;
     Transform player;                     // fallback if no targets
     Transform[] targets;
     Transform target;
     Vector2 offset;
     float nextHitTime;
     bool falling;
+    bool dead;
+
+    // read by Splitter / PinnerBrain
+    public Transform Player => player;
+    public bool IsFalling => falling;
 
     void Awake()
     {
@@ -94,6 +108,7 @@ public class EnemyManager : MonoBehaviour, IDamageable
         }
 
         // the shadow is only for the fall: remove it on impact
+        AudioManager.Play(SFX.EnemyLand);           // SFX
         if (shadow) StartCoroutine(RemoveShadow(shadow, shadowSr));
 
         // landing squash
@@ -152,7 +167,7 @@ public class EnemyManager : MonoBehaviour, IDamageable
 
     void FixedUpdate()
     {
-        if (falling || target == null) return;
+        if (!chase || falling || target == null) return;
 
         // 1. toward the goal
         Vector2 goal = (Vector2)target.position + offset;
@@ -175,34 +190,35 @@ public class EnemyManager : MonoBehaviour, IDamageable
         rb.MovePosition(rb.position + velocity * Time.fixedDeltaTime);
     }
 
-    void OnCollisionStay2D(Collision2D col)
+    void OnCollisionStay2D(Collision2D collision)
     {
         if (falling || Time.time < nextHitTime) return;
-        if (col.collider.TryGetComponent<IDamageable>(out var hit))
+        if (collision.collider.TryGetComponent<IDamageable>(out var hit))
         {
             if (hit is EnemyManager) return;         // enemies don't hurt each other
             hit.TakeDamage(contactDamage);
             nextHitTime = Time.time + contactCooldown;
         }
     }
-    HitEffect hitEffect;
-    // in Awake():
-
-    // in TakeDamage(), after health -= amount and the death check:
-    public DamagePopup damagePopup;
 
     public void TakeDamage(float amount)
     {
-        if (falling) return;
+        if (falling || dead) return;
         if (damagePopup) DamagePopup.Spawn(damagePopup, transform.position + Vector3.up * 0.5f, amount);
-        Debug.Log($"TakeDamage called, popup assigned: {damagePopup != null}");
         health -= amount;
-        if (health <= 0f) { Destroy(gameObject); return; }
+        if (health <= 0f)
+        {
+            dead = true;                              // loop ticks can hit twice in one frame
+            AudioManager.Play(SFX.EnemyDeath);        // SFX
+            CameraShake.Shake(0.1f, 0.12f);
+            CameraShake.HitStop(0.04f);
+            SendMessage("OnKilled", SendMessageOptions.DontRequireReceiver);
+            Destroy(gameObject);
+            return;
+        }
+        AudioManager.Play(SFX.EnemyHit);              // SFX
         if (hitEffect) hitEffect.TakeHit();
     }
-    [Header("Facing")]
-    public float turnSpeed = 720f;       // degrees per second, 0 = snap instantly
-    public float facingOffset = -90f;    // -90 if the sprite points up, 0 if it points right, 90 if it points left
 
     void Update()
     {
@@ -212,10 +228,10 @@ public class EnemyManager : MonoBehaviour, IDamageable
         if (dir.sqrMagnitude < 0.0001f) return;
 
         float angle = Mathf.Atan2(dir.y, dir.x) * Mathf.Rad2Deg + facingOffset;
-        Quaternion target = Quaternion.Euler(0f, 0f, angle);
+        Quaternion targetRot = Quaternion.Euler(0f, 0f, angle);
 
         visual.rotation = turnSpeed > 0f
-            ? Quaternion.RotateTowards(visual.rotation, target, turnSpeed * Time.deltaTime)
-            : target;
+            ? Quaternion.RotateTowards(visual.rotation, targetRot, turnSpeed * Time.deltaTime)
+            : targetRot;
     }
 }

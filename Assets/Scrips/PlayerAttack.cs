@@ -78,6 +78,8 @@ public class PlayerAttack : MonoBehaviour
         attackEndTime = Time.time + attackDuration;
         AimPivot();                          // make sure the arc uses the latest mouse position
         SpinVisual();
+        AudioManager.Play(SFX.Slash);        // SFX
+        CameraShake.Shake(0.06f, 0.08f);     // small slash kick
         Mark newest = SpawnMark();
         TryFormLoop(newest);
     }
@@ -318,6 +320,9 @@ public class PlayerAttack : MonoBehaviour
     // ================= WHAT HAPPENS WHEN A LOOP FORMS =================
     void OnLoopFormed(List<Vector2> poly)
     {
+        AudioManager.Play(SFX.LoopFormed);   // SFX
+        CameraShake.Shake(0.4f, 0.3f);
+        CameraShake.HitStop(0.06f);
         StartCoroutine(ShowLoop(poly));
         StartCoroutine(DamageLoop(poly));
     }
@@ -333,11 +338,17 @@ public class PlayerAttack : MonoBehaviour
 
         while (Time.time < end)
         {
+            int hits = 0;
             foreach (var col in Physics2D.OverlapAreaAll(min, max, enemyLayers))
             {
                 if (!TouchesPoly(col, poly)) continue;
                 var d = col.GetComponentInParent<IDamageable>();
-                if (d != null) d.TakeDamage(loopTickDamage);
+                if (d != null) { d.TakeDamage(loopTickDamage); hits++; }
+            }
+            if (hits > 0)                    // shake only when the tick actually hit something
+            {
+                AudioManager.Play(SFX.LoopTick);   // SFX
+                CameraShake.Shake(Mathf.Min(0.05f + 0.02f * hits, 0.16f), 0.12f);
             }
             yield return new WaitForSeconds(loopTickRate);
         }
