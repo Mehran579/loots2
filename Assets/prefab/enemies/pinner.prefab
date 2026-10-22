@@ -330,6 +330,9 @@ MonoBehaviour:
   damagePopup: {fileID: 3656020258244443561, guid: f089502720d29254491b6393b7da5b67, type: 3}
   turnSpeed: 720
   facingOffset: -90
+  healChance: 1
+  healAmount: 5
+  stopRepicking: 0
 --- !u!61 &1865541977480988856
 BoxCollider2D:
   m_ObjectHideFlags: 0
