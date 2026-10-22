@@ -138,7 +138,7 @@ ScriptedImporter:
       x: 4
       y: 4
       width: 64
-      height: 28
+      height: 29
     spriteID: f222b31b80a7a01438b874e9c71c4415
     spriteBone: []
     spriteOutline: []
@@ -156,8 +156,8 @@ ScriptedImporter:
     customData: 
     rect:
       serializedVersion: 2
-      x: 49
-      y: 72
+      x: 183
+      y: 4
       width: 62
       height: 15
     spriteID: 92f770588b20ba642bc0dc097c0c5536
@@ -168,7 +168,7 @@ ScriptedImporter:
     indices: 
     edges: []
     tessellationDetail: 0
-    uvTransform: {x: 49, y: 72}
+    uvTransform: {x: 183, y: 4}
   - name: Layer 5
     originalName: 
     pivot: {x: 1.1999999, y: -5.1428576}
@@ -177,8 +177,8 @@ ScriptedImporter:
     customData: 
     rect:
       serializedVersion: 2
-      x: 4
-      y: 115
+      x: 183
+      y: 53
       width: 25
       height: 7
     spriteID: 4070326794f9c0d4db70fd92715774d8
@@ -189,7 +189,7 @@ ScriptedImporter:
     indices: 
     edges: []
     tessellationDetail: 0
-    uvTransform: {x: 4, y: 115}
+    uvTransform: {x: 183, y: 53}
   - name: Layer 6
     originalName: 
     pivot: {x: 1.1923077, y: -1.8571429}
@@ -199,7 +199,7 @@ ScriptedImporter:
     rect:
       serializedVersion: 2
       x: 76
-      y: 4
+      y: 36
       width: 26
       height: 21
     spriteID: 86c73e3f95e392a49ab471347d3a2621
@@ -210,7 +210,7 @@ ScriptedImporter:
     indices: 
     edges: []
     tessellationDetail: 0
-    uvTransform: {x: 76, y: 4}
+    uvTransform: {x: 76, y: 36}
   - name: Layer 7
     originalName: 
     pivot: {x: -0.10344827, y: -4}
@@ -219,8 +219,8 @@ ScriptedImporter:
     customData: 
     rect:
       serializedVersion: 2
-      x: 85
-      y: 114
+      x: 219
+      y: 27
       width: 29
       height: 10
     spriteID: 5b4fbfcb4b817d94c9a047e17286b487
@@ -231,7 +231,7 @@ ScriptedImporter:
     indices: 
     edges: []
     tessellationDetail: 0
-    uvTransform: {x: 85, y: 114}
+    uvTransform: {x: 219, y: 27}
   - name: Layer 8
     originalName: 
     pivot: {x: 0.8648649, y: -0.4857143}
@@ -240,8 +240,8 @@ ScriptedImporter:
     customData: 
     rect:
       serializedVersion: 2
-      x: 4
-      y: 72
+      x: 138
+      y: 4
       width: 37
       height: 35
     spriteID: a913fbbacc7f35f4c9ab1b5868bde5d6
@@ -252,7 +252,7 @@ ScriptedImporter:
     indices: 
     edges: []
     tessellationDetail: 0
-    uvTransform: {x: 4, y: 72}
+    uvTransform: {x: 138, y: 4}
   - name: Layer 9
     originalName: 
     pivot: {x: -0.14285715, y: -2.909091}
@@ -261,8 +261,8 @@ ScriptedImporter:
     customData: 
     rect:
       serializedVersion: 2
-      x: 85
-      y: 95
+      x: 138
+      y: 47
       width: 28
       height: 11
     spriteID: 5320e4bc2c1cc9645b5392ab45595f61
@@ -273,7 +273,7 @@ ScriptedImporter:
     indices: 
     edges: []
     tessellationDetail: 0
-    uvTransform: {x: 85, y: 95}
+    uvTransform: {x: 138, y: 47}
   - name: Layer 10
     originalName: 
     pivot: {x: 0.4074074, y: -1.6666667}
@@ -282,8 +282,8 @@ ScriptedImporter:
     customData: 
     rect:
       serializedVersion: 2
-      x: 4
-      y: 40
+      x: 76
+      y: 4
       width: 54
       height: 24
     spriteID: 9dc40174534010b48b8c6206a23dff14
@@ -294,7 +294,7 @@ ScriptedImporter:
     indices: 
     edges: []
     tessellationDetail: 0
-    uvTransform: {x: 4, y: 40}
+    uvTransform: {x: 76, y: 4}
   - name: Layer 2
     originalName: 
     pivot: {x: 0.5178572, y: -0.7368421}
@@ -303,8 +303,8 @@ ScriptedImporter:
     customData: 
     rect:
       serializedVersion: 2
-      x: 66
-      y: 40
+      x: 4
+      y: 41
       width: 56
       height: 19
     spriteID: f2ad02d0cd21d1d45a705204a0681040
@@ -315,7 +315,7 @@ ScriptedImporter:
     indices: 
     edges: []
     tessellationDetail: 0
-    uvTransform: {x: 66, y: 40}
+    uvTransform: {x: 4, y: 41}
   - name: Layer 3
     originalName: 
     pivot: {x: -0.071428575, y: -1.0555556}
@@ -324,8 +324,8 @@ ScriptedImporter:
     customData: 
     rect:
       serializedVersion: 2
-      x: 49
-      y: 95
+      x: 183
+      y: 27
       width: 28
       height: 18
     spriteID: b2dae86df19ca3b49be0beeec69a694a
@@ -336,7 +336,7 @@ ScriptedImporter:
     indices: 
     edges: []
     tessellationDetail: 0
-    uvTransform: {x: 49, y: 95}
+    uvTransform: {x: 183, y: 27}
   spriteSheetImportData: []
   tileSetImportData: []
   asepriteLayers:
@@ -359,188 +359,13 @@ ScriptedImporter:
         x: 0
         y: 0
         width: 64
-        height: 28
+        height: 29
       spriteId: f222b31b80a7a01438b874e9c71c4415
     linkedCells: []
     tileCells: []
     tileSetIndex: 0
     parentIndex: -1
   - layerIndex: 1
-    uuid:
-      value0: 4287466683
-      value1: 0
-      value2: 0
-      value3: 0
-    guid: 0
-    name: Layer 4
-    layerFlags: 3
-    layerType: 0
-    blendMode: 0
-    cells:
-    - name: Layer 4
-      frameIndex: 0
-      additiveSortOrder: 0
-      cellRect:
-        x: 2
-        y: 25
-        width: 62
-        height: 15
-      spriteId: 92f770588b20ba642bc0dc097c0c5536
-    linkedCells: []
-    tileCells: []
-    tileSetIndex: 0
-    parentIndex: -1
-  - layerIndex: 2
-    uuid:
-      value0: 4287466684
-      value1: 0
-      value2: 0
-      value3: 0
-    guid: 0
-    name: Layer 5
-    layerFlags: 3
-    layerType: 0
-    blendMode: 0
-    cells:
-    - name: Layer 5
-      frameIndex: 0
-      additiveSortOrder: 0
-      cellRect:
-        x: 2
-        y: 36
-        width: 25
-        height: 7
-      spriteId: 4070326794f9c0d4db70fd92715774d8
-    linkedCells: []
-    tileCells: []
-    tileSetIndex: 0
-    parentIndex: -1
-  - layerIndex: 3
-    uuid:
-      value0: 4287466681
-      value1: 0
-      value2: 0
-      value3: 0
-    guid: 0
-    name: Layer 6
-    layerFlags: 3
-    layerType: 0
-    blendMode: 0
-    cells:
-    - name: Layer 6
-      frameIndex: 0
-      additiveSortOrder: 0
-      cellRect:
-        x: 1
-        y: 39
-        width: 26
-        height: 21
-      spriteId: 86c73e3f95e392a49ab471347d3a2621
-    linkedCells: []
-    tileCells: []
-    tileSetIndex: 0
-    parentIndex: -1
-  - layerIndex: 4
-    uuid:
-      value0: 4287466682
-      value1: 0
-      value2: 0
-      value3: 0
-    guid: 0
-    name: Layer 7
-    layerFlags: 3
-    layerType: 0
-    blendMode: 0
-    cells:
-    - name: Layer 7
-      frameIndex: 0
-      additiveSortOrder: 0
-      cellRect:
-        x: 35
-        y: 40
-        width: 29
-        height: 10
-      spriteId: 5b4fbfcb4b817d94c9a047e17286b487
-    linkedCells: []
-    tileCells: []
-    tileSetIndex: 0
-    parentIndex: -1
-  - layerIndex: 5
-    uuid:
-      value0: 4287466687
-      value1: 0
-      value2: 0
-      value3: 0
-    guid: 0
-    name: Layer 8
-    layerFlags: 3
-    layerType: 0
-    blendMode: 0
-    cells:
-    - name: Layer 8
-      frameIndex: 0
-      additiveSortOrder: 0
-      cellRect:
-        x: 0
-        y: 17
-        width: 37
-        height: 35
-      spriteId: a913fbbacc7f35f4c9ab1b5868bde5d6
-    linkedCells: []
-    tileCells: []
-    tileSetIndex: 0
-    parentIndex: -1
-  - layerIndex: 6
-    uuid:
-      value0: 4287466688
-      value1: 0
-      value2: 0
-      value3: 0
-    guid: 0
-    name: Layer 9
-    layerFlags: 3
-    layerType: 0
-    blendMode: 0
-    cells:
-    - name: Layer 9
-      frameIndex: 0
-      additiveSortOrder: 0
-      cellRect:
-        x: 36
-        y: 32
-        width: 28
-        height: 11
-      spriteId: 5320e4bc2c1cc9645b5392ab45595f61
-    linkedCells: []
-    tileCells: []
-    tileSetIndex: 0
-    parentIndex: -1
-  - layerIndex: 7
-    uuid:
-      value0: 3780712520
-      value1: 0
-      value2: 0
-      value3: 0
-    guid: 0
-    name: Layer 10
-    layerFlags: 3
-    layerType: 0
-    blendMode: 0
-    cells:
-    - name: Layer 10
-      frameIndex: 0
-      additiveSortOrder: 0
-      cellRect:
-        x: 10
-        y: 40
-        width: 54
-        height: 24
-      spriteId: 9dc40174534010b48b8c6206a23dff14
-    linkedCells: []
-    tileCells: []
-    tileSetIndex: 0
-    parentIndex: -1
-  - layerIndex: 8
     uuid:
       value0: 4287466677
       value1: 0
@@ -565,7 +390,7 @@ ScriptedImporter:
     tileCells: []
     tileSetIndex: 0
     parentIndex: -1
-  - layerIndex: 9
+  - layerIndex: 2
     uuid:
       value0: 4287466678
       value1: 0
@@ -586,6 +411,181 @@ ScriptedImporter:
         width: 28
         height: 18
       spriteId: b2dae86df19ca3b49be0beeec69a694a
+    linkedCells: []
+    tileCells: []
+    tileSetIndex: 0
+    parentIndex: -1
+  - layerIndex: 3
+    uuid:
+      value0: 4287466683
+      value1: 0
+      value2: 0
+      value3: 0
+    guid: 0
+    name: Layer 4
+    layerFlags: 3
+    layerType: 0
+    blendMode: 0
+    cells:
+    - name: Layer 4
+      frameIndex: 0
+      additiveSortOrder: 0
+      cellRect:
+        x: 2
+        y: 25
+        width: 62
+        height: 15
+      spriteId: 92f770588b20ba642bc0dc097c0c5536
+    linkedCells: []
+    tileCells: []
+    tileSetIndex: 0
+    parentIndex: -1
+  - layerIndex: 4
+    uuid:
+      value0: 4287466684
+      value1: 0
+      value2: 0
+      value3: 0
+    guid: 0
+    name: Layer 5
+    layerFlags: 3
+    layerType: 0
+    blendMode: 0
+    cells:
+    - name: Layer 5
+      frameIndex: 0
+      additiveSortOrder: 0
+      cellRect:
+        x: 2
+        y: 36
+        width: 25
+        height: 7
+      spriteId: 4070326794f9c0d4db70fd92715774d8
+    linkedCells: []
+    tileCells: []
+    tileSetIndex: 0
+    parentIndex: -1
+  - layerIndex: 5
+    uuid:
+      value0: 4287466681
+      value1: 0
+      value2: 0
+      value3: 0
+    guid: 0
+    name: Layer 6
+    layerFlags: 3
+    layerType: 0
+    blendMode: 0
+    cells:
+    - name: Layer 6
+      frameIndex: 0
+      additiveSortOrder: 0
+      cellRect:
+        x: 1
+        y: 39
+        width: 26
+        height: 21
+      spriteId: 86c73e3f95e392a49ab471347d3a2621
+    linkedCells: []
+    tileCells: []
+    tileSetIndex: 0
+    parentIndex: -1
+  - layerIndex: 6
+    uuid:
+      value0: 4287466682
+      value1: 0
+      value2: 0
+      value3: 0
+    guid: 0
+    name: Layer 7
+    layerFlags: 3
+    layerType: 0
+    blendMode: 0
+    cells:
+    - name: Layer 7
+      frameIndex: 0
+      additiveSortOrder: 0
+      cellRect:
+        x: 35
+        y: 40
+        width: 29
+        height: 10
+      spriteId: 5b4fbfcb4b817d94c9a047e17286b487
+    linkedCells: []
+    tileCells: []
+    tileSetIndex: 0
+    parentIndex: -1
+  - layerIndex: 7
+    uuid:
+      value0: 4287466687
+      value1: 0
+      value2: 0
+      value3: 0
+    guid: 0
+    name: Layer 8
+    layerFlags: 3
+    layerType: 0
+    blendMode: 0
+    cells:
+    - name: Layer 8
+      frameIndex: 0
+      additiveSortOrder: 0
+      cellRect:
+        x: 0
+        y: 17
+        width: 37
+        height: 35
+      spriteId: a913fbbacc7f35f4c9ab1b5868bde5d6
+    linkedCells: []
+    tileCells: []
+    tileSetIndex: 0
+    parentIndex: -1
+  - layerIndex: 8
+    uuid:
+      value0: 4287466688
+      value1: 0
+      value2: 0
+      value3: 0
+    guid: 0
+    name: Layer 9
+    layerFlags: 3
+    layerType: 0
+    blendMode: 0
+    cells:
+    - name: Layer 9
+      frameIndex: 0
+      additiveSortOrder: 0
+      cellRect:
+        x: 36
+        y: 32
+        width: 28
+        height: 11
+      spriteId: 5320e4bc2c1cc9645b5392ab45595f61
+    linkedCells: []
+    tileCells: []
+    tileSetIndex: 0
+    parentIndex: -1
+  - layerIndex: 9
+    uuid:
+      value0: 3780712520
+      value1: 0
+      value2: 0
+      value3: 0
+    guid: 0
+    name: Layer 10
+    layerFlags: 3
+    layerType: 0
+    blendMode: 0
+    cells:
+    - name: Layer 10
+      frameIndex: 0
+      additiveSortOrder: 0
+      cellRect:
+        x: 10
+        y: 40
+        width: 54
+        height: 24
+      spriteId: 9dc40174534010b48b8c6206a23dff14
     linkedCells: []
     tileCells: []
     tileSetIndex: 0
@@ -632,4 +632,4 @@ ScriptedImporter:
   secondarySpriteTextures: []
   spritePackingTag: 
   canvasSize: {x: 64, y: 64}
-  previousTextureSize: {x: 128, y: 128}
+  previousTextureSize: {x: 256, y: 64}
