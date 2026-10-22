@@ -484,7 +484,7 @@ MonoBehaviour:
   repickMax: 4
   separationRadius: 1.2
   separationStrength: 1.5
-  contactDamage: 1
+  contactDamage: 2
   contactCooldown: 0.5
   visual: {fileID: 8364167601655594085}
   shadow: {fileID: 1449555798137185259}
@@ -497,6 +497,9 @@ MonoBehaviour:
   damagePopup: {fileID: 3656020258244443561, guid: f089502720d29254491b6393b7da5b67, type: 3}
   turnSpeed: 720
   facingOffset: -90
+  healChance: 0.25
+  healAmount: 1
+  stopRepicking: 0
 --- !u!60 &-3992110411377008108
 PolygonCollider2D:
   m_ObjectHideFlags: 0

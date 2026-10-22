@@ -409,7 +409,7 @@ MonoBehaviour:
   repickMax: 4
   separationRadius: 1.2
   separationStrength: 1.5
-  contactDamage: 1
+  contactDamage: 3
   contactCooldown: 0.5
   visual: {fileID: 3656730748607299709}
   shadow: {fileID: 6251894156128021999}
@@ -422,6 +422,9 @@ MonoBehaviour:
   damagePopup: {fileID: 3656020258244443561, guid: f089502720d29254491b6393b7da5b67, type: 3}
   turnSpeed: 0
   facingOffset: 0
+  healChance: 0.25
+  healAmount: 1
+  stopRepicking: 0
 --- !u!96 &1952109050353302644
 TrailRenderer:
   serializedVersion: 4

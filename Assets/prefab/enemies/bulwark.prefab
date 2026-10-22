@@ -84,7 +84,7 @@ MonoBehaviour:
   repickMax: 10
   separationRadius: 1.2
   separationStrength: 1.5
-  contactDamage: 1
+  contactDamage: 2
   contactCooldown: 0.5
   visual: {fileID: 4929947695610285950}
   shadow: {fileID: 2528777168666693497}
@@ -97,8 +97,8 @@ MonoBehaviour:
   damagePopup: {fileID: 3656020258244443561, guid: 11fe337dcd7815941a160c95711ce813, type: 3}
   turnSpeed: 0
   facingOffset: -90
-  healChance: 0.2
-  healAmount: 5
+  healChance: 0.33
+  healAmount: 2
   stopRepicking: 0
 --- !u!61 &8189918686671872675
 BoxCollider2D:

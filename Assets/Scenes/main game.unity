@@ -371,10 +371,9 @@ MonoBehaviour:
   - {fileID: 11400000, guid: 72296cf60b2acad4fab0378d7929c1b3, type: 2}
   - {fileID: 11400000, guid: e45ae6386a381414a9e05415264e031a, type: 2}
   - {fileID: 11400000, guid: 52a1b6132c5b20b4e80f063dc9bf6a7a, type: 2}
-  - {fileID: 11400000, guid: 66e35dc0171d5124fafdf1661fa6d5f1, type: 2}
   - {fileID: 11400000, guid: 42dbb5e83141631448988bd1d3dd2504, type: 2}
-  - {fileID: 11400000, guid: 1741503b9505411498e28da3ec1c6727, type: 2}
-  - {fileID: 11400000, guid: 878639e86fc8f6849bada7b322bf51b5, type: 2}
+  - {fileID: 11400000, guid: 63efb5908e62c72429b3836212e7a2ad, type: 2}
+  - {fileID: 11400000, guid: f556bcf05e771454393db7085ac39f1c, type: 2}
   player: {fileID: 835543626}
   targets:
   - {fileID: 118652534}
@@ -8109,6 +8108,10 @@ PrefabInstance:
     - target: {fileID: 825865227228181551, guid: f1466d6d5b883a64cb1031ed9dc45a04, type: 3}
       propertyPath: m_IsActive
       value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 4423868793006286640, guid: f1466d6d5b883a64cb1031ed9dc45a04, type: 3}
+      propertyPath: health
+      value: 6
       objectReference: {fileID: 0}
     - target: {fileID: 7142125851840330677, guid: f1466d6d5b883a64cb1031ed9dc45a04, type: 3}
       propertyPath: m_LocalPosition.x
