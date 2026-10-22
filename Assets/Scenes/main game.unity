@@ -3577,12 +3577,12 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 1607b1d5823048845a0435b05571cf69, type: 3}
   m_Name: 
   m_EditorClassIdentifier: '::'
-  speed: 7
-  attackMoveMultiplier: 0.3
-  dashSheepd: 35
-  dahsDuearion: 0.15
-  invulTIme: 0.2
-  dashCooldown: 0.7
+  speed: 11
+  attackMoveMultiplier: 0.5
+  dashSheepd: 45
+  dahsDuearion: 0.2
+  invulTIme: 0.3
+  dashCooldown: 0.4
   dashPassLayers:
     serializedVersion: 2
     m_Bits: 8
@@ -3786,22 +3786,22 @@ MonoBehaviour:
   spinDegrees: 180
   spinTime: 0.25
   arcDistance: 3.14
-  arcLength: 4.87
+  arcLength: 8
   arcPointCount: 100
   lineMaterial: {fileID: 2100000, guid: 5227dfbf53726ad48978ddb611da6b83, type: 2}
   dashMaterial: {fileID: 2100000, guid: 67dd4993170117b4881f472cce5de48d, type: 2}
   lineWidth: 0.12
   lineColor: {r: 1, g: 1, b: 1, a: 1}
-  slashLifetime: 3
-  dashLifetime: 1.5
-  maxMarks: 8
+  slashLifetime: 6
+  dashLifetime: 3
+  maxMarks: 15
   endTolerance: 0.7
   enemyLayers:
     serializedVersion: 2
     m_Bits: 8
-  loopDuration: 2
-  loopTickRate: 0.3
-  loopTickDamage: 1
+  loopDuration: 4
+  loopTickRate: 0.15
+  loopTickDamage: 1.5
   loopmateria: {fileID: 2100000, guid: f113789e91fec7141b47d7bca732b3ff, type: 2}
   outlineColor: {r: 1, g: 0.9, b: 0.3, a: 1}
   fillOpacity: 1
