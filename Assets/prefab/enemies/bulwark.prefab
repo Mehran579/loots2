@@ -12,6 +12,7 @@ GameObject:
   - component: {fileID: 4404469441943094557}
   - component: {fileID: 2969703891333402959}
   - component: {fileID: 8189918686671872675}
+  - component: {fileID: 1870781846626110990}
   m_Layer: 3
   m_Name: bulwark
   m_TagString: Untagged
@@ -76,11 +77,11 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::EnemyManager
   health: 9
-  moveSpeed: 0.5
+  moveSpeed: 2
   chase: 1
-  offsetRadius: 1.5
-  repickMin: 2
-  repickMax: 4
+  offsetRadius: 0
+  repickMin: 5
+  repickMax: 10
   separationRadius: 1.2
   separationStrength: 1.5
   contactDamage: 1
@@ -96,6 +97,9 @@ MonoBehaviour:
   damagePopup: {fileID: 3656020258244443561, guid: 11fe337dcd7815941a160c95711ce813, type: 3}
   turnSpeed: 0
   facingOffset: -90
+  healChance: 0.2
+  healAmount: 5
+  stopRepicking: 0
 --- !u!61 &8189918686671872675
 BoxCollider2D:
   m_ObjectHideFlags: 0
@@ -142,6 +146,20 @@ BoxCollider2D:
   m_AutoTiling: 0
   m_Size: {x: 0.32517856, y: 0.31006908}
   m_EdgeRadius: 0
+--- !u!114 &1870781846626110990
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 3205508331515867068}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 64a60bedcbf23e5428ce2965c66f433d, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::Bulwark
+  minTimeUntilChase: 5
+  maxTimeUntilChase: 10
 --- !u!1 &3273557784065433134
 GameObject:
   m_ObjectHideFlags: 0

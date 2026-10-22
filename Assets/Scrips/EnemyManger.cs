@@ -41,6 +41,10 @@ public class EnemyManager : MonoBehaviour, IDamageable
 
     static readonly List<EnemyManager> all = new List<EnemyManager>();
 
+    [Header("Loot")]
+    public float healChance = 0.2f;      // 1 in 5 chance
+    public float healAmount = 5f;
+
     Rigidbody2D rb;
     Collider2D col;
     HitEffect hitEffect;
@@ -152,10 +156,19 @@ public class EnemyManager : MonoBehaviour, IDamageable
         if (sh) Destroy(sh.gameObject);
     }
 
+    public bool stopRepicking = false;
+
     IEnumerator RepickRoutine()
     {
         while (true)
         {
+            if (stopRepicking)
+            {
+                target = player;
+                offset = Vector2.zero;
+                yield break; // Stop the routine entirely
+            }
+
             target = (targets != null && targets.Length > 0)
                 ? targets[Random.Range(0, targets.Length)]
                 : player;
@@ -212,6 +225,14 @@ public class EnemyManager : MonoBehaviour, IDamageable
             AudioManager.Play(SFX.EnemyDeath);        // SFX
             CameraShake.Shake(0.1f, 0.12f);
             CameraShake.HitStop(0.04f);
+
+            // --- Heal Drop Logic ---
+            if (Random.value <= healChance)
+            {
+                var ph = GameObject.FindFirstObjectByType<playerhealth>();
+                if (ph != null) ph.Heal(healAmount);
+            }
+            // -----------------------
 
             // Notify BackgroundFader if it exists
             var fader = GameObject.FindFirstObjectByType<BackgroundFader>();

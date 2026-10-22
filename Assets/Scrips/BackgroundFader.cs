@@ -76,26 +76,35 @@ public class BackgroundFader : MonoBehaviour
 
     void Update()
     {
-        // We can't easily get a "Death Event" from EnemyManager without modifying it,
-        // so we track the difference between total spawned and currently alive.
-        // However, WaveSpawner only tracks 'alive' for the current wave.
-        // To be precise, we should probably modify EnemyManager to notify us.
+        // Start fading after 45 seconds, complete by 4 minutes (240s)
+        float startTime = 45f;
+        float endTime = 240f;
+        float currentTime = Time.timeSinceLevelLoad;
+
+        if (currentTime < startTime) return;
+
+        float fadeWindow = endTime - startTime;
+        float progress = (currentTime - startTime) / fadeWindow;
+
+        // Calculate how many layers should have started fading by now
+        int layersToFadeByNow = Mathf.FloorToInt(progress * totalBranchLayers);
+
+        // Trigger the fade for the specific layer that just crossed the threshold
+        if (layersToFadeByNow >= 0 && layersToFadeByNow < totalBranchLayers && layersToFadeByNow == enemiesKilled)
+        {
+            // We reuse enemiesKilled as a counter for which layer index we are on
+            OnEnemyKilled();
+        }
     }
 
-    // Public method to be called when an enemy dies
+    // Public method to be called when an enemy dies (kept for backward compatibility)
     public void OnEnemyKilled()
     {
+        int layerIndexToFade = enemiesKilled;
         enemiesKilled++;
 
-        // Map the killed enemy index to a branch layer index
-        // (e.g. if we have 100 enemies and 10 layers, every 10 deaths = 1 layer fades)
         if (totalBranchLayers <= 0) return;
 
-        int layerIndexToFade = (enemiesKilled * totalBranchLayers / totalEnemiesInGame);
-
-        // Since we want to fade from top to bottom or bottom to top,
-        // let's fade in order of the children (0 to N).
-        // To ensure we don't go out of bounds:
         layerIndexToFade = Mathf.Clamp(layerIndexToFade, 0, totalBranchLayers - 1);
 
         StartCoroutine(FadeLayerWithDelay(layerIndexToFade));

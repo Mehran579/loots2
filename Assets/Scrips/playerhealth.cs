@@ -42,6 +42,13 @@ public class playerhealth : MonoBehaviour, IDamageable
         if (manager) manager.HitReaction(invulnDuration);
         //flash.Blink(invulnDuration, blinkInterval);
     }
+
+    public void Heal(float amount)
+    {
+        float maxHealth = 50f; // Matching the base health defined in this script
+        health = Mathf.Min(health + amount, maxHealth);
+    }
+
     public GameObject endscreen;
     public void GrantInvuln(float seconds)
     {

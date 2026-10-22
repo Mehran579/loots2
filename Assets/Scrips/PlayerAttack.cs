@@ -25,6 +25,7 @@ public class PlayerAttack : MonoBehaviour
     public float attackDuration = 0.25f;     // how long the player counts as "attacking"
     public float attackCooldown = 0.4f;      // minimum time between slashes (from the start of a slash)
     float nextAttackTime;
+    public float AttackReady01 => attackCooldown <= 0f ? 1f : Mathf.Clamp01(1f - (nextAttackTime - Time.time) / attackCooldown);
 
     [Header("Attack Spin")]
     public Transform spinVisual;             // the player's sprite child (a diamond looks the same every 90 degrees)

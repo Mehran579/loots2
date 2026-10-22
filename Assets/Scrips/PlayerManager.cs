@@ -36,6 +36,7 @@ public class PlayerManager : MonoBehaviour
     Vector2 lastdir = Vector2.down;
     Vector2 dashDir;
     float nextDashTime;
+    public float DashReady01 => dashCooldown <= 0f ? 1f : Mathf.Clamp01(1f - (nextDashTime - Time.time) / dashCooldown);
     float hitUntil;
     float hitDuration;
     Rigidbody2D rb;
